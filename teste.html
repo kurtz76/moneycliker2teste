@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Saldo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #3498db;
+        }
+        #saldo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            color: #fff;
+        }
+        #container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #money {
+            cursor: pointer;
+        }
+        .circle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #fff;
+            opacity: 0.5;
+            animation: spin 3s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div id="saldo">Saldo: <span id="saldo-valor">0</span></div>
+    <div id="container">
+        <img id="money" src="money.png" alt="Dinheiro" width="100" height="100">
+    </div>
+    <script>
+        let saldo = 0;
+        const saldoValor = document.getElementById('saldo-valor');
+        const money = document.getElementById('money');
+
+        money.addEventListener('click', () => {
+            saldo++;
+            saldoValor.textContent = saldo;
+        });
+
+        // Crie algumas bolinhas girando no fundo
+        for (let i = 0; i < 10; i++) {
+            createCircle();
+        }
+
+        function createCircle() {
+            const circle = document.createElement('div');
+            circle.className = 'circle';
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            circle.style.left = x + 'px';
+            circle.style.top = y + 'px';
+            document.body.appendChild(circle);
+        }
+    </script>
+</body>
+</html>
